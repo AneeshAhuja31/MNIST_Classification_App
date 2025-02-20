@@ -54,3 +54,12 @@
 2025-02-20 22:50:12,517 - INFO - 127.0.0.1 - - [20/Feb/2025 22:50:12] "POST /predict HTTP/1.1" 200 -
 2025-02-20 22:50:27,588 - INFO - 127.0.0.1 - - [20/Feb/2025 22:50:27] "POST /predict HTTP/1.1" 200 -
 2025-02-20 22:50:37,804 - INFO - 127.0.0.1 - - [20/Feb/2025 22:50:37] "POST /predict HTTP/1.1" 200 -
+2025-02-21 00:29:21,354 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-02-21 00:29:21,354 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-21 00:29:21,370 - INFO -  * Restarting with watchdog (windowsapi)
+2025-02-21 00:29:27,393 - WARNING -  * Debugger is active!
+2025-02-21 00:29:27,401 - INFO -  * Debugger PIN: 856-401-594
+2025-02-21 00:29:29,632 - INFO - 127.0.0.1 - - [21/Feb/2025 00:29:29] "GET / HTTP/1.1" 200 -
+2025-02-21 00:29:33,533 - INFO - 127.0.0.1 - - [21/Feb/2025 00:29:33] "POST /predict HTTP/1.1" 200 -
+2025-02-21 00:29:37,450 - INFO - 127.0.0.1 - - [21/Feb/2025 00:29:37] "POST /predict HTTP/1.1" 200 -

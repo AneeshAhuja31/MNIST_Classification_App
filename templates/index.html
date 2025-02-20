@@ -2,6 +2,7 @@
 {%block title%}Index Page{%endblock%}
 
 {%block content%}
+<h1>MNSIT Image Classification</h1>
 <h2>Draw a Digit (0-9) below: </h2>
 <canvas id="digitCanvas" width="280" height="280" style="background-color: #190033; border: 1px solid white;"></canvas><br>
 <button onclick="clearCanvas()">Clear</button>
@@ -70,7 +71,7 @@
                 const data = await response.json();
                 console.log("Prediction result:", data);  // Debug: Log the result from Flask
 
-                document.getElementById('predictionResult').innerText = `Predicted Digit: ${data.digit}, list : ${data.list}`;
+                document.getElementById('predictionResult').innerText = `Predicted Digit: ${data.digit},\n List of Probabilities: ${data.list}`;
             } else {
                 console.error('Error during prediction:', response.statusText);
             }

@@ -108,7 +108,6 @@ tensorflow-datasets==4.9.7
 tensorflow-hub==0.16.1
 tensorflow-io-gcs-filesystem==0.31.0
 tensorflow-metadata==1.16.1
-tensorflow_intel==2.18.0
 termcolor==2.5.0
 tf_keras==2.18.0
 threadpoolctl==3.5.0

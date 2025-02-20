@@ -4,6 +4,7 @@ import numpy as np
 from keras.api.models import load_model
 import logging
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -33,7 +34,8 @@ def predict():
                     'list':prediction_list})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port,debug=True)
 
 
 

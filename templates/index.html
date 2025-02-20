@@ -15,31 +15,68 @@
     const ctx = canvas.getContext('2d');
     let drawing = false
 
-    canvas.addEventListener('mousedown',startDrawing)
-    canvas.addEventListener('mousemove',draw)
-    canvas.addEventListener('mouseup',stopDrawing)
-    canvas.addEventListener('mouseout',stopDrawing)
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
 
+canvas.addEventListener("touchstart", handleTouchStart);
+canvas.addEventListener("touchmove", handleTouchMove);
+canvas.addEventListener("touchend", stopDrawing);
+canvas.addEventListener("touchcancel", stopDrawing);
 
-    function draw(){
-        if(!drawing) return;
-        ctx.lineWidth = 10
-        ctx.lineCap = 'round'
-        ctx.strokeStyle = 'yellow'
-        ctx.lineTo(event.clientX - canvas.offsetLeft,event.clientY - canvas.offsetTop)
-        ctx.stroke()
-    }
-    function startDrawing(event){
-        drawing=true
-        draw(event)
-    }
+function handleTouchStart(event) {
+    event.preventDefault();
+    const touch = event.touches[0];
+    const mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}
+
+function handleTouchMove(event) {
+    event.preventDefault();
+    const touch = event.touches[0];
+    const mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}
+
+function draw(event) {
+    if(!drawing) return;
+    
+    ctx.lineWidth = 10;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = 'yellow';
+    
+    const rect = canvas.getBoundingClientRect();
+    const x = (event.clientX || event.touches[0].clientX) - rect.left;
+    const y = (event.clientY || event.touches[0].clientY) - rect.top;
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+}
+
+function startDrawing(event) {
+    drawing = true;
+    ctx.beginPath();
+
+    const rect = canvas.getBoundingClientRect();
+    const x = (event.clientX || event.touches[0].clientX) - rect.left;
+    const y = (event.clientY || event.touches[0].clientY) - rect.top;
+    
+    ctx.moveTo(x, y);
+}
     function stopDrawing(event){
         drawing=false
         ctx.beginPath()
     }
     function clearCanvas(){
         ctx.clearRect(0,0,canvas.width,canvas.height)
-        document.getElementById('predictionResult').innerText = "" //clears text in the h3 tag
+        document.getElementById('predictionResult').innerText = ""
     }
 
     function getGrayscaleData(imageData){

@@ -371,3 +371,22 @@
 2025-02-21 01:01:19,502 - INFO -  * Detected change in 'C:\\Users\\HP\\OneDrive\\Desktop\\ML\\MNIST_CLASSIFICATION\\application.py', reloading
 2025-02-21 01:01:19,502 - INFO -  * Detected change in 'C:\\Users\\HP\\OneDrive\\Desktop\\ML\\MNIST_CLASSIFICATION\\application.py', reloading
 2025-02-21 01:01:20,558 - INFO -  * Restarting with watchdog (windowsapi)
+2025-02-21 01:11:45,936 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.1.37:10000
+2025-02-21 01:11:45,936 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-21 01:11:45,945 - INFO -  * Restarting with watchdog (windowsapi)
+2025-02-21 01:11:50,686 - WARNING -  * Debugger is active!
+2025-02-21 01:11:50,686 - INFO -  * Debugger PIN: 856-401-594
+2025-02-21 01:11:59,322 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:10000
+ * Running on http://192.168.1.37:10000
+2025-02-21 01:11:59,323 - INFO - [33mPress CTRL+C to quit[0m
+2025-02-21 01:11:59,328 - INFO -  * Restarting with watchdog (windowsapi)
+2025-02-21 01:12:04,085 - WARNING -  * Debugger is active!
+2025-02-21 01:12:04,091 - INFO -  * Debugger PIN: 856-401-594
+2025-02-21 01:12:16,496 - INFO - 127.0.0.1 - - [21/Feb/2025 01:12:16] "GET / HTTP/1.1" 200 -
+2025-02-21 01:12:16,622 - INFO - 127.0.0.1 - - [21/Feb/2025 01:12:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-02-21 01:12:24,443 - INFO - 127.0.0.1 - - [21/Feb/2025 01:12:24] "POST /predict HTTP/1.1" 200 -

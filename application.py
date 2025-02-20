@@ -9,7 +9,8 @@ logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime
 
 model_path = os.path.join(os.getcwd(), 'modelv3.h5')
 cnn = load_model(model_path)
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 
 @app.route('/')
 def index():

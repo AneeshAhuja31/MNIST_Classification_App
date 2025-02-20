@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{%block title%}Index Page{%endblock%}
+
+{%block content%}
+<h2>Draw a Digit (0-9) below: </h2>
+<canvas id="digitCanvas" width="280" height="280" style="background-color: #190033; border: 1px solid white;"></canvas><br>
+<button onclick="clearCanvas()">Clear</button>
+<button onclick="predict()">Predict</button>
+
+<h3 id="predictionResult"></h3>
+
+<script type="text/javascript">
+    const canvas = document.getElementById('digitCanvas');
+    const ctx = canvas.getContext('2d');
+    let drawing = false
+
+    canvas.addEventListener('mousedown',startDrawing)
+    canvas.addEventListener('mousemove',draw)
+    canvas.addEventListener('mouseup',stopDrawing)
+    canvas.addEventListener('mouseout',stopDrawing)
+
+
+    function draw(){
+        if(!drawing) return;
+        ctx.lineWidth = 10
+        ctx.lineCap = 'round'
+        ctx.strokeStyle = 'yellow'
+        ctx.lineTo(event.clientX - canvas.offsetLeft,event.clientY - canvas.offsetTop)
+        ctx.stroke()
+    }
+    function startDrawing(event){
+        drawing=true
+        draw(event)
+    }
+    function stopDrawing(event){
+        drawing=false
+        ctx.beginPath()
+    }
+    function clearCanvas(){
+        ctx.clearRect(0,0,canvas.width,canvas.height)
+        document.getElementById('predictionResult').innerText = "" //clears text in the h3 tag
+    }
+
+    function getGrayscaleData(imageData){
+        const data = imageData.data
+        const greyscaleData = []
+        for(let i=0;i<data.length;i+=4){
+            const r = data[i]
+            const g = data[i+1]
+            const b = data[i+2]
+            const grayscale = Math.round(r*0.299+g*0.587+b*0.114)
+            greyscaleData.push(grayscale)
+        }
+        return greyscaleData
+    }
+    async function predict() {
+        const imageData = ctx.getImageData(0,0,canvas.width,canvas.height)
+        const grayscaleData = getGrayscaleData(imageData)
+        try {
+            const response = await fetch("{{url_for('predict')}}", {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({pixels:grayscaleData})
+            })
+            
+            // Check if the response is OK
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Prediction result:", data);  // Debug: Log the result from Flask
+
+                document.getElementById('predictionResult').innerText = `Predicted Digit: ${data.digit}, list : ${data.list}`;
+            } else {
+                console.error('Error during prediction:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error in fetching prediction:', error);
+        }
+    }
+</script>
+{%endblock%}
